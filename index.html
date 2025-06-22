@@ -64,8 +64,8 @@
       font-weight: 600;
       font-size: 1.1rem;
       color: white;
-      min-height: 1.2em; /* keeps height so text doesn't jump */
-      white-space: nowrap; /* prevent line breaks during typing */
+      min-height: 1.2em;
+      white-space: nowrap;
       overflow: hidden;
       position: relative;
       z-index: 2;
@@ -135,7 +135,7 @@
 <body>
 
   <header>
-    <img src="images/selfie.jpg" alt="A selfie of...ME! Hard wig soft life-ing in a mirror." id="selfie" />
+    <img src="images/selfie.jpg" alt="A selfie of...ME!" id="selfie" />
     <img src="images/logo (1).svg" alt="Tikyra Downs Logo" id="logo" />
     <p id="typed-intro"></p>
   </header>
@@ -149,10 +149,22 @@
   <section id="resume" class="active">
     <h2>Resume</h2> 
     <p>Download my resume <a href="tikyradownsresume.pdf" target="_blank">here</a>.</p>
-    <p><strong>Experience:</strong> blah blah blah.</p>
-    <p><strong>Relevant Skills:</strong> Screenwriting, playwriting, storytelling, poetry, reflective and theoretical writing, critical reading, academic writing, copywriting, blogging, social awareness, communication.</p>
-    <p><strong>Skills I Think Are Cool and Worth Mentioning:</strong> candy making, coding (r, html, javascript, CSS), data visualisation, baking, customer service, drawing, plant identification, barista-ing, public speaking, can use a theodolite, and theres more where that came from. </p>
-  </section>
+    <p>_____________________________________________________________________________ </p>
+
+ <p>Hey, stranger! Welcome to my page.</p>
+  
+<p>Here’s a little about me:</p>
+
+<p>I write skits, commercials, short films, screenplays, blog posts, the occasional play, poetry, and essays. I started out studying botany in midcoast Maine, but it turns out I really like being holed up indoors writing until my eyes burn instead. Now I’m working toward an AA in Liberal Arts at Bunker Hill Community College.</p>
+
+<p>While you're reading this, I’m probably working on my first full-length movie (or reading better ones for inspiration).</p>
+
+<p>If you’re looking for someone to collaborate with, hire, or just say hi to, feel free to reach out. I’m always happy to write, brainstorm, or learn something new.</p>
+
+<p>Best,<br>
+T.K. &lt;3</p>
+</section>
+
 
   <section id="projects">
     <h2>Projects</h2>
@@ -212,9 +224,7 @@
         const postId = link.getAttribute('data-post');
         const postContent = document.getElementById(postId);
 
-        // Toggle visibility of clicked post content
         if (postContent.style.display === 'none') {
-          // Hide all other posts first
           document.querySelectorAll('.blog-post-content').forEach(div => {
             div.style.display = 'none';
           });
