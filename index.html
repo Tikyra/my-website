@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tikyra Downs — Portfolio</title>
+
+  <!-- Link to Poppins Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      font-family: "Courier New", Courier, monospace !important;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #fff0f6;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      color: #d6336c;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #9b2040;
+      text-decoration: underline;
+    }
+    header {
+      background: #d6336c;
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      border-bottom: 5px solid #ffa3b1;
+    }
+    #selfie {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 4px solid white;
+      margin: 0 auto 15px auto;
+      display: block;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    #logo {
+      width: 300px; /* bigger logo */
+      height: auto;
+      margin: 0 auto 10px auto;
+      display: block;
+    }
+    header p {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+    }
+    nav {
+      background: #f8c6d0;
+      display: flex;
+      justify-content: center;
+      border-bottom: 2px solid #d6336c;
+    }
+    nav a {
+      color: #6f1d47;
+      padding: 15px 25px;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px 8px 0 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      margin: 0 8px;
+      cursor: pointer;
+    }
+    nav a:hover,
+    nav a.active {
+      background-color: #d6336c;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(214, 51, 108, 0.4);
+    }
+    section {
+      background: white;
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 14px rgba(214, 51, 108, 0.15);
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    section p {
+      margin-bottom: 15px;
+    }
+    h2 {
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #9b2040;
+    }
+    footer {
+      background: #d6336c;
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 40px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/selfie.jpg" alt="A selfie of Tikyra Downs" id="selfie" />
+    <img src="images/logo (1).svg" alt="Tikyra Downs Logo" id="logo" />
+    <p>Hey! I'm a student at BHCC and an aspiring screenwriter.</p>
+  </header>
+
+  <nav>
+    <a href="#" data-tab="resume" class="active">Resume</a>
+    <a href="#" data-tab="projects">Projects</a>
+    <a href="#" data-tab="blog">Blog</a>
+  </nav>
+
+  <section id="resume" class="active">
+    <h2>Resume</h2> 
+    <p>Download my resume <a href="resume.pdf" target="_blank">here</a>.</p>
+    <p><strong>Experience:</strong> blah blah blah.</p>
+    <p><strong>Relevant Skills:</strong> Screenwriting, playwrighting, storytelling, poetry, reflective and theoretical writing, critical reading, academic writing, copywriting, blogging, social awareness, communication.</p>
+    <p><strong>Skills I Think Are Cool and Worth Mentioning:</strong> candy making, coding (r, html, javascript, CSS), data visualisation, baking, customer service, drawing, plant identification, barista-ing, public speaking, can use a theodolite, financially literate.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <p><strong>Feature Screenplay (2025):</strong> A drama about [short logline here].</p>
+    <p><strong>Short Film (2024):</strong> A short exploring [summary here].</p>
+    <p><strong>Spec Commercial (Concept):</strong> 30-second spot for [brand] focusing on [idea here].</p>
+  </section>
+
+  <section id="blog">
+    <h2>Blog</h2>
+    <p><strong>June 2025:</strong>  BLOG POAST.</p>
+    <p><strong>Coming Soon:</strong> Lessons from writing my first full-length screenplay! </p>
+  </section>
+
+  <footer>
+    <p>© 2025 Tikyra Downs • Contact: you@example.com</p>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const target = tab.getAttribute('data-tab');
+        sections.forEach(section => {
+          section.classList.remove('active');
+          if (section.id === target) section.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
