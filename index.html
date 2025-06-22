@@ -56,6 +56,9 @@
       font-weight: 600;
       font-size: 1.1rem;
       color: white;
+      min-height: 1.2em; /* keeps height so text doesn't jump */
+      white-space: nowrap; /* prevent line breaks during typing */
+      overflow: hidden;
     }
     nav {
       background: #f8c6d0;
@@ -115,7 +118,7 @@
   <header>
     <img src="images/selfie.jpg" alt="A selfie of...ME! Hard wig soft life-ing in a mirror." id="selfie" />
     <img src="images/logo (1).svg" alt="Tikyra Downs Logo" id="logo" />
-    <p>Hey! I'm a student at BHCC and an aspiring screenwriter.</p>
+    <p id="typed-intro"></p>
   </header>
 
   <nav>
@@ -202,6 +205,23 @@
           postContent.style.display = 'none';
         }
       });
+    });
+
+    // Typing animation
+    const text = "Student and aspiring screenwriter.";
+    const introElem = document.getElementById("typed-intro");
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text.length) {
+        introElem.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 60);
+      }
+    }
+
+    window.addEventListener('load', () => {
+      typeWriter();
     });
   </script>
 </body>
