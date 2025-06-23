@@ -130,6 +130,14 @@
       position: relative;
       z-index: 2;
     }
+    #blog-list {
+      list-style-type: none;
+      padding-left: 0;
+      color: #555;
+    }
+    #blog-list li {
+      margin-bottom: 12px;
+    }
   </style>
 </head>
 <body>
@@ -162,7 +170,6 @@
 
     <p><strong>Best,<br>
     T.K. &lt;3</strong></p>
-
   </section>
 
   <section id="projects">
@@ -178,8 +185,8 @@
   <section id="blog">
     <h2>Blog</h2>
     <p>_____________________________________________________________________________ </p>
-    <ul id="blog-list" style="list-style-type:none; padding-left: 0;">
-      <!-- Tumblr posts will load here -->
+    <ul id="blog-list">
+      <li>Loading posts...</li>
     </ul>
   </section>
 
@@ -220,84 +227,46 @@
 
     window.addEventListener('load', () => {
       typeWriter();
+      fetchTumblrPosts();
     });
 
-    // Tumblr blog feed integration
-    const consumerKey = "apR2b2vsTtP2x240oaHrt4iYLBk1f9iy1xiC4PK1GvWbeB7KAS";
-    const blogIdentifier = "corquetree.tumblr.com";
+    // Tumblr API key
+    const API_KEY = 'apR2b2vsTtP2x240oaHrt4iYLBk1f9iy1xiC4PK1GvWbeB7KAS';
 
-    async function fetchTumblrPosts() {
-      const apiUrl = `https://api.tumblr.com/v2/blog/${blogIdentifier}/posts?api_key=${consumerKey}&limit=5`;
-
-      try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        if (data.meta.status !== 200) {
-          console.error('Tumblr API error:', data.meta.msg);
-          document.getElementById('blog-list').innerHTML = '<li>Error loading posts.</li>';
-          return;
-        }
-
-        const posts = data.response.posts;
-        const blogList = document.getElementById('blog-list');
-        blogList.innerHTML = '';
-
-        posts.forEach((post, index) => {
-          const postDate = new Date(post.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-
-          let excerpt = '';
-          if (post.summary) {
-            excerpt = post.summary;
-          } else if (post.body) {
-            excerpt = post.body.replace(/<[^>]+>/g, '').substring(0, 200) + '...';
-          } else {
-            excerpt = 'No preview available.';
-          }
-
-          const listItem = document.createElement('li');
-          listItem.style.marginBottom = '20px';
-
-          listItem.innerHTML = `
-            <a href="${post.post_url}" target="_blank" class="blog-post-link" data-post="post${index}">
-              <strong>${postDate}:</strong> ${post.title || excerpt.substring(0, 50) + '...'}
-            </a>
-            <div class="blog-post-content" id="post${index}" style="display:none; margin-top:10px; color:#555;">
-              <p>${excerpt}</p>
-              ${post.photos ? post.photos.map(photo => `<img src="${photo.original_size.url}" alt="Tumblr photo" style="max-width:100%; margin-top:8px; border-radius:8px;">`).join('') : ''}
-              ${post.player ? post.player : ''}
-            </div>
-          `;
-
-          blogList.appendChild(listItem);
-        });
-
-        document.querySelectorAll('.blog-post-link').forEach(link => {
-          link.addEventListener('click', e => {
-            e.preventDefault();
-
-            const postId = link.getAttribute('data-post');
-            const postContent = document.getElementById(postId);
-
-            if (postContent.style.display === 'none') {
-              document.querySelectorAll('.blog-post-content').forEach(div => {
-                div.style.display = 'none';
-              });
-
-              postContent.style.display = 'block';
-            } else {
-              postContent.style.display = 'none';
-            }
-          });
-        });
-
-      } catch (error) {
-        console.error('Fetch error:', error);
-        document.getElementById('blog-list').innerHTML = '<li>Error fetching posts.</li>';
-      }
+    function fetchTumblrPosts() {
+      const script = document.createElement('script');
+      // JSONP request to get posts from your Tumblr blog
+      script.src = `https://api.tumblr.com/v2/blog/corquetree.tumblr.com/posts?api_key=${API_KEY}&jsonp=handleTumblrResponse`;
+      document.body.appendChild(script);
     }
 
-    window.addEventListener('load', fetchTumblrPosts);
+    function handleTumblrResponse(data) {
+      const blogList = document.getElementById('blog-list');
+      blogList.innerHTML = '';
+
+      if (!data || !data.response || !data.response.posts || data.response.posts.length === 0) {
+        blogList.innerHTML = '<li>No posts found.</li>';
+        return;
+      }
+
+      data.response.posts.forEach(post => {
+        const postDate = new Date(post.date).toLocaleDateString();
+        let text = post.title || post.summary || post.type || "Tumblr Post";
+        // strip HTML tags
+        text = text.replace(/<\/?[^>]+(>|$)/g, "");
+        if (text.length > 50) text = text.substring(0, 47) + '...';
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = post.post_url;
+        a.textContent = `${postDate}: ${text}`;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+
+        li.appendChild(a);
+        blogList.appendChild(li);
+      });
+    }
   </script>
 
 </body>
