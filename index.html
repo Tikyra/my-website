@@ -4,148 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>tikyradowns.com</title>
-
-  <!-- Link to Poppins Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      font-family: "Courier New", Courier, monospace !important;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background-color: #e6f0d4; /* very light green */
-      color: #335522; /* dark green for text */
-      line-height: 1.6;
-      position: relative;
-      overflow-x: hidden;
-    }
-    a {
-      color: #5a7d3a; /* medium green */
-      text-decoration: none;
-    }
-    a:hover {
-      color: #4b6930; /* darker green */
-      text-decoration: underline;
-    }
-    header {
-      background: #7ca662; /* your main green */
-      color: white;
-      padding: 25px 20px;
-      text-align: center;
-      border-bottom: 5px solid #a3c67d; /* lighter green */
-      position: relative;
-      z-index: 2;
-    }
-    #selfie {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 20px;
-      border: 4px solid white;
-      margin: 0 auto 15px auto;
-      display: block;
-      box-shadow: 0 4px 10px rgba(124, 166, 98, 0.6);
-      position: relative;
-      z-index: 2;
-    }
-    #logo {
-      max-width: 260px;
-      width: 100%;
-      height: auto;
-      margin: 0 auto 10px auto;
-      display: block;
-      position: relative;
-      z-index: 2;
-    }
-    header p {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: white;
-      min-height: 1.2em;
-      white-space: nowrap;
-      overflow: hidden;
-      position: relative;
-      z-index: 2;
-    }
-    nav {
-      background: #a3c67d; /* lighter green */
-      display: flex;
-      justify-content: center;
-      border-bottom: 2px solid #7ca662; /* main green */
-      position: relative;
-      z-index: 2;
-    }
-    nav a {
-      color: #4b6930; /* dark green */
-      padding: 15px 25px;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 8px 8px 0 0;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      margin: 0 8px;
-      cursor: pointer;
-      position: relative;
-      z-index: 2;
-    }
-    nav a:hover,
-    nav a.active {
-      background-color: #7ca662; /* main green */
-      color: white;
-      box-shadow: 0 4px 8px rgba(124, 166, 98, 0.5);
-    }
-    section {
-      background: white;
-      max-width: 850px;
-      margin: 30px auto;
-      padding: 25px 30px;
-      border-radius: 12px;
-      box-shadow: 0 6px 14px rgba(124, 166, 98, 0.15);
-      display: none;
-      position: relative;
-      z-index: 2;
-    }
-    section.active {
-      display: block;
-    }
-    section p {
-      margin-bottom: 15px;
-    }
-    h2 {
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: #4b6930; /* dark green */
-      margin-bottom: 20px;
-    }
-    footer {
-      background: #7ca662; /* main green */
-      color: white;
-      padding: 12px 20px;
-      text-align: center;
-      font-size: 0.9rem;
-      margin-top: 40px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      position: relative;
-      z-index: 2;
-    }
-    ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    ul li {
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
+    * { font-family: "Courier New", Courier, monospace; margin:0; padding:0; box-sizing:border-box; }
+    body { background:#e6f0d4; color:#335522; line-height:1.6; }
+    a { color:#5a7d3a; text-decoration:none; }
+    a:hover { color:#4b6930; text-decoration:underline; }
+    header { background:#7ca662; color:#fff; text-align:center; padding:25px 20px; border-bottom:5px solid #a3c67d; }
+    #selfie, #logo { display:block; margin:0 auto 15px; }
+    #selfie { width:120px; height:120px; border-radius:20px; border:4px solid #fff; object-fit:cover; box-shadow:0 4px 10px rgba(124,166,98,0.6); }
+    #logo { max-width:260px; }
+    header p { font-weight:600; font-size:1.1rem; white-space:nowrap; overflow:hidden; }
+    nav { background:#a3c67d; display:flex; justify-content:center; border-bottom:2px solid #7ca662; }
+    nav a { padding:15px 25px; font-weight:600; border-radius:8px 8px 0 0; margin:0 8px; transition:0.3s; }
+    nav a.active, nav a:hover { background:#7ca662; color:#fff; box-shadow:0 4px 8px rgba(124,166,98,0.5); }
+    section { background:#fff; max-width:850px; margin:30px auto; padding:25px 30px; border-radius:12px; box-shadow:0 6px 14px rgba(124,166,98,0.15); display:none; }
+    section.active { display:block; }
+    h2 { font-weight:700; letter-spacing:1.5px; color:#4b6930; margin-bottom:15px; }
+    ul { list-style:none; padding-left:0; }
+    ul li { margin-bottom:12px; }
+    footer { background:#7ca662; color:#fff; text-align:center; padding:12px 20px; border-top-left-radius:10px; border-top-right-radius:10px; margin-top:40px; font-size:0.9rem; }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="images/selfie.jpg" alt="A selfie of...ME!" id="selfie" />
-    <img src="images/logo (1).svg" alt="Tikyra Downs Logo" id="logo" />
+    <img src="images/selfie.jpg" alt="A selfie of me" id="selfie" />
+    <img src="images/logo.svg" alt="Tikyra Downs Logo" id="logo" />
     <p id="typed-intro"></p>
   </header>
 
@@ -156,29 +41,22 @@
   </nav>
 
   <section id="resume" class="active">
-    <h2>Resume</h2> 
-    <p>_____________________________________________________________________________ </p>
-    <p>Download my resume <a href="tikyradownsresume.pdf" target="_blank">here</a>.</p>
-    <p>_____________________________________________________________________________ </p>
-
+    <h2>Resume</h2>
+    <p>_________________________________________________________________</p>
+    <p>Download my resume <a href="tikyradownsresume.pdf" target="_blank" rel="noopener noreferrer">here</a>.</p>
+    <p>_________________________________________________________________</p>
     <p><strong>Hey, stranger! Welcome to my page.</strong></p>
-
     <p>I write skits, commercials, short films, screenplays, blog posts, the occasional play, poetry, and essays. I started out studying botany in midcoast Maine, but it turns out I really like being holed up indoors writing until my eyes burn instead. Now I’m working toward an AA in Liberal Arts at Bunker Hill Community College.</p>
-
     <p>While you're reading this, I’m probably working on my first full-length movie (or reading better ones for inspiration).</p>
-
     <p>If you’re looking for someone to collaborate with, hire, or just say hi to, feel free to reach out. I’m always happy to write, brainstorm, or learn something new.</p>
-
-    <p><strong>Best,<br>
-    T.K. &lt;3</strong></p>
-
+    <p><strong>Best,<br>T.K. ♥</strong></p>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
-    <p>_____________________________________________________________________________ </p>
-    <p>Will be here for your viewing pleasure...eventually.</p>
-    <p>_____________________________________________________________________________ </p>
+    <p>_________________________________________________________________</p>
+    <p>Will be here for your viewing pleasure... eventually.</p>
+    <p>_________________________________________________________________</p>
     <p><strong>Feature Screenplay (2025):</strong> [logline].</p>
     <p><strong>Skit:</strong> [logline].</p>
     <p><strong>Something Else:</strong> [logline].</p>
@@ -186,68 +64,72 @@
 
   <section id="blog">
     <h2>Blog</h2>
-    <ul>
-      <li>
-        <a href="https://www.tumblr.com/corquetree/787111593148399616" target="_blank" rel="noopener noreferrer">
-          June 2025: My Latest Screenplay Thoughts
-        </a>
-      </li>
-      <li>
-        <a href="https://www.tumblr.com/corquetree/787111571832832000" target="_blank" rel="noopener noreferrer">
-          June 2025: Day in the Life Writing
-        </a>
-      </li>
-      <li>
-        <a href="https://www.tumblr.com/corquetree/787111454331518976" target="_blank" rel="noopener noreferrer">
-          June 2025: Inspiration & Ideas
-        </a>
-      </li>
-      <li>
-        <a href="https://www.tumblr.com/corquetree/787111446246981632" target="_blank" rel="noopener noreferrer">
-          June 2025: Behind the Scenes of My Blog
-        </a>
-      </li>
+    <ul id="blog-list">
+      <li>Loading posts...</li>
     </ul>
   </section>
 
   <footer>
-    <p>© 2025 Tikyra Downs • Contact: tikyradowns@protonmail.com</p>
+    <p>© 2025 Tikyra Downs • tikyradowns@protonmail.com</p>
   </footer>
 
   <script>
-    const tabs = document.querySelectorAll('nav a');
-    const sections = document.querySelectorAll('section');
-
-    tabs.forEach(tab => {
+    // Tab navigation
+    document.querySelectorAll('nav a').forEach(tab => {
       tab.addEventListener('click', e => {
         e.preventDefault();
-        tabs.forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('nav a').forEach(t=>t.classList.remove('active'));
         tab.classList.add('active');
-
-        const target = tab.getAttribute('data-tab');
-        sections.forEach(section => {
-          section.classList.remove('active');
-          if (section.id === target) section.classList.add('active');
-        });
+        document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+        document.getElementById(tab.dataset.tab).classList.add('active');
       });
     });
 
-    // Typing animation
-    const text = "Student and aspiring screenwriter.";
-    const introElem = document.getElementById("typed-intro");
-    let index = 0;
-
+    // Typed intro animation
+    const introText = "Student and aspiring screenwriter.";
+    let idx = 0;
+    const introElem = document.getElementById('typed-intro');
     function typeWriter() {
-      if (index < text.length) {
-        introElem.textContent += text.charAt(index);
-        index++;
+      if (idx < introText.length) {
+        introElem.textContent += introText[idx++];
         setTimeout(typeWriter, 60);
       }
     }
 
+    // Fetch Tumblr RSS via RSS2JSON API
+    async function fetchTumblrRSS() {
+      const ul = document.getElementById('blog-list');
+      try {
+        const rssUrl = encodeURIComponent('https://corquetree.tumblr.com/rss');
+        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
+        const data = await response.json();
+        if (data.status === 'ok' && data.items) {
+          ul.innerHTML = '';
+          data.items.forEach(item => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = item.link;
+            a.textContent = new Date(item.pubDate).toLocaleDateString(undefined, { month:'short', day:'numeric', year:'numeric' }) + ': ' + (item.title || 'Untitled');
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            li.appendChild(a);
+            ul.appendChild(li);
+          });
+        } else {
+          ul.innerHTML = '<li>Failed to load posts.</li>';
+        }
+      } catch (error) {
+        ul.innerHTML = '<li>Error loading posts.</li>';
+        console.error(error);
+      }
+    }
+
+    // Initialize page
     window.addEventListener('load', () => {
       typeWriter();
+      fetchTumblrRSS();
     });
   </script>
+
 </body>
 </html>
