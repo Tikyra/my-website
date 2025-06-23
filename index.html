@@ -148,11 +148,11 @@
 
   <section id="resume" class="active">
     <h2>Resume</h2> 
-     <p>_____________________________________________________________________________ </p>
+    <p>_____________________________________________________________________________ </p>
     <p>Download my resume <a href="tikyradownsresume.pdf" target="_blank">here</a>.</p>
     <p>_____________________________________________________________________________ </p>
 
-   <p><strong>Hey, stranger! Welcome to my page.</strong></p>
+    <p><strong>Hey, stranger! Welcome to my page.</strong></p>
 
     <p>I write skits, commercials, short films, screenplays, blog posts, the occasional play, poetry, and essays. I started out studying botany in midcoast Maine, but it turns out I really like being holed up indoors writing until my eyes burn instead. Now I’m working toward an AA in Liberal Arts at Bunker Hill Community College.</p>
 
@@ -160,39 +160,26 @@
 
     <p>If you’re looking for someone to collaborate with, hire, or just say hi to, feel free to reach out. I’m always happy to write, brainstorm, or learn something new.</p>
 
-<p><strong>Best,<br>
-T.K. &lt;3</strong></p>
+    <p><strong>Best,<br>
+    T.K. &lt;3</strong></p>
 
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
-     <p>_____________________________________________________________________________ </p>
+    <p>_____________________________________________________________________________ </p>
     <p> Will be here for your viewing pleasure...eventually. </p>
     <p>_____________________________________________________________________________ </p>
     <p><strong>Feature Screenplay (2025):</strong> [logline].</p>
     <p><strong>Skit:</strong> [logline].</p>
     <p><strong>Something Else:</strong> [logline].</p>
-    
   </section>
 
   <section id="blog">
     <h2>Blog</h2>
-     <p>_____________________________________________________________________________ </p>
-    
+    <p>_____________________________________________________________________________ </p>
     <ul id="blog-list" style="list-style-type:none; padding-left: 0;">
-      <li>
-        <a href="#" class="blog-post-link" data-post="post1">June 2025: BLOG POAST.</a>
-        <div class="blog-post-content" id="post1" style="display:none; margin-top:10px; color:#555;">
-          <p>my blog post will go here...</p>
-        </div>
-      </li>
-      <li>
-        <a href="#" class="blog-post-link" data-post="post2">Coming Soon: Lessons from writing my first full-length screenplay!</a>
-        <div class="blog-post-content" id="post2" style="display:none; margin-top:10px; color:#555;">
-          <p>This post will discuss the lessons I learned writing my first full-length screenplay.</p>
-        </div>
-      </li>
+      <!-- Tumblr posts will load here -->
     </ul>
   </section>
 
@@ -218,28 +205,6 @@ T.K. &lt;3</strong></p>
       });
     });
 
-    // Blog post toggle
-    const blogLinks = document.querySelectorAll('.blog-post-link');
-
-    blogLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-
-        const postId = link.getAttribute('data-post');
-        const postContent = document.getElementById(postId);
-
-        if (postContent.style.display === 'none') {
-          document.querySelectorAll('.blog-post-content').forEach(div => {
-            div.style.display = 'none';
-          });
-
-          postContent.style.display = 'block';
-        } else {
-          postContent.style.display = 'none';
-        }
-      });
-    });
-
     // Typing animation
     const text = "Student and aspiring screenwriter.";
     const introElem = document.getElementById("typed-intro");
@@ -256,6 +221,84 @@ T.K. &lt;3</strong></p>
     window.addEventListener('load', () => {
       typeWriter();
     });
+
+    // Tumblr blog feed integration
+    const consumerKey = "apR2b2vsTtP2x240oaHrt4iYLBk1f9iy1xiC4PK1GvWbeB7KAS";
+    const blogIdentifier = "corquetree.tumblr.com";
+
+    async function fetchTumblrPosts() {
+      const apiUrl = `https://api.tumblr.com/v2/blog/${blogIdentifier}/posts?api_key=${consumerKey}&limit=5`;
+
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (data.meta.status !== 200) {
+          console.error('Tumblr API error:', data.meta.msg);
+          document.getElementById('blog-list').innerHTML = '<li>Error loading posts.</li>';
+          return;
+        }
+
+        const posts = data.response.posts;
+        const blogList = document.getElementById('blog-list');
+        blogList.innerHTML = '';
+
+        posts.forEach((post, index) => {
+          const postDate = new Date(post.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+
+          let excerpt = '';
+          if (post.summary) {
+            excerpt = post.summary;
+          } else if (post.body) {
+            excerpt = post.body.replace(/<[^>]+>/g, '').substring(0, 200) + '...';
+          } else {
+            excerpt = 'No preview available.';
+          }
+
+          const listItem = document.createElement('li');
+          listItem.style.marginBottom = '20px';
+
+          listItem.innerHTML = `
+            <a href="${post.post_url}" target="_blank" class="blog-post-link" data-post="post${index}">
+              <strong>${postDate}:</strong> ${post.title || excerpt.substring(0, 50) + '...'}
+            </a>
+            <div class="blog-post-content" id="post${index}" style="display:none; margin-top:10px; color:#555;">
+              <p>${excerpt}</p>
+              ${post.photos ? post.photos.map(photo => `<img src="${photo.original_size.url}" alt="Tumblr photo" style="max-width:100%; margin-top:8px; border-radius:8px;">`).join('') : ''}
+              ${post.player ? post.player : ''}
+            </div>
+          `;
+
+          blogList.appendChild(listItem);
+        });
+
+        document.querySelectorAll('.blog-post-link').forEach(link => {
+          link.addEventListener('click', e => {
+            e.preventDefault();
+
+            const postId = link.getAttribute('data-post');
+            const postContent = document.getElementById(postId);
+
+            if (postContent.style.display === 'none') {
+              document.querySelectorAll('.blog-post-content').forEach(div => {
+                div.style.display = 'none';
+              });
+
+              postContent.style.display = 'block';
+            } else {
+              postContent.style.display = 'none';
+            }
+          });
+        });
+
+      } catch (error) {
+        console.error('Fetch error:', error);
+        document.getElementById('blog-list').innerHTML = '<li>Error fetching posts.</li>';
+      }
+    }
+
+    window.addEventListener('load', fetchTumblrPosts);
   </script>
+
 </body>
 </html>
